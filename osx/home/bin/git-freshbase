@@ -1,0 +1,8 @@
+#!/bin/bash
+# Fetch the latest changes for a branch and rebase off that branch.
+set -e
+source "$(dirname $0)/util/git_helpers.sh"
+
+REBASE_TARGET=${1:-$(main_branch_name)}
+git fetch origin "$REBASE_TARGET"
+git rebase "origin/$REBASE_TARGET"

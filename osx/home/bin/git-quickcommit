@@ -1,0 +1,10 @@
+#!/bin/bash
+# Commit all changes and push the commit to this branch's head on the `origin` remote.
+# Does not add untracked files to the commit - to add all untracked files, call "git fullquickcommit"
+set -e
+source "$(dirname $0)/util/git_helpers.sh"
+
+main_branch_guard "Quickcommit is disabled when making direct edits to the '$(main_branch_name)' branch."
+
+git commit -am "$1"
+git push origin head

@@ -1,0 +1,11 @@
+bash
+coreutils
+git
+hub
+helmfile
+jq
+node
+python@3.9
+q
+terraform
+tmux
