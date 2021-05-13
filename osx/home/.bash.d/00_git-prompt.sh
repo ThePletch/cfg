@@ -1,5 +1,3 @@
-# helper functions to
-
 # check cleanliness of branch, append following characters:
 # * - unstaged changes
 # + - staged but uncommitted changes
