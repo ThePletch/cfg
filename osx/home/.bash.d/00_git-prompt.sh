@@ -27,7 +27,7 @@ function git_branch_string {
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         # we're in a git repo, generate branch info
         current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-        echo -e "$current_branch$(git_branch_cleanliness_marker)"
+        echo -e "$current_branch $(git_branch_cleanliness_marker)"
     else
         echo -e ''
     fi
