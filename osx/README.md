@@ -5,7 +5,9 @@ Config for setting up a Mac machine for work.
 ## How to install
 
 1. Run `install.sh` to install anything installable via CLI.
-1. Copy the contents of `home` to your home directory (you can skip the readmes)
+1. Copy the contents of `home` to your home directory
+1. If necessary, [change your default shell from zsh to bash](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/)
+1. Restart any active shell sessions to load the new Bash settings
 
 ## What gets installed?
 

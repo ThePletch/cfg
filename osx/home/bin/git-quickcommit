@@ -1,5 +1,6 @@
 #!/bin/bash
-# Commit all changes and push the commit to this branch's head on the `origin` remote
+# Commit all changes and push the commit to this branch's head on the `origin` remote.
+# Does not add untracked files to the commit - to add all untracked files, call "git fullquickcommit"
 set -e
 source "$(dirname $0)/util/git_helpers.sh"
 
