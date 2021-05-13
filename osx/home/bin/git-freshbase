@@ -1,0 +1,3 @@
+
+git fetch origin $1
+git rebase "origin/$1"
