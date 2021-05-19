@@ -8,6 +8,8 @@ mkdir -p $OSX_INSTALLS_DIR/tmp
 if [ ! -f "$(which brew)" ]; then
     # command sourced from https://brew.sh/
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bash_profile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 brew install $(<$OSX_INSTALLS_DIR/brew_packages)
