@@ -4,6 +4,12 @@ OSX_INSTALLS_DIR=$(dirname $0)
 
 mkdir -p $OSX_INSTALLS_DIR/tmp
 
+# install homebrew if necessary
+if [ ! -f "$(which brew)" ]; then
+    # command sourced from https://brew.sh/
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 brew install $(<$OSX_INSTALLS_DIR/brew_packages)
 brew install --cask $(<$OSX_INSTALLS_DIR/brew_casks)
 
