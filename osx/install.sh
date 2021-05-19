@@ -18,6 +18,14 @@ brew install --cask $(<$OSX_INSTALLS_DIR/brew_casks)
 # npm is installed alongside node in the brew packages
 cat $OSX_INSTALLS_DIR/npm_packages | xargs npm install -g
 
+# force /usr/bin/python to point at python 3
+sudo ln -sf /usr/bin/python3 /usr/bin/python
+
+# if pip got installed to pip3, reference the unversioned commands in 
+if [ ! -f "$(which pip)" ]; then
+    sudo ln -s /usr/bin/pip3 /usr/bin/pip
+fi
+
 # pip comes bundled with python (installed via brew).
 # we can install other python versions later for specific projects using poetry.
 PIP_REQUIRE_VIRTUALENV=false pip install --user -r $OSX_INSTALLS_DIR/pip_packages
