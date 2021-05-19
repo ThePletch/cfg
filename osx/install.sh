@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 OSX_INSTALLS_DIR=$(dirname $0)
 
