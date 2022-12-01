@@ -13,14 +13,20 @@ if [ ! -f "$(which brew)" ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-brew install $(<$OSX_INSTALLS_DIR/brew_packages)
+brew install $(<$OSX_INSTALLS_DIR/brew_packages) || echo "Packages are already installed. Skipping."
 brew install --cask $(<$OSX_INSTALLS_DIR/brew_casks)
 
 # npm is installed alongside node in the brew packages
 cat $OSX_INSTALLS_DIR/npm_packages | xargs npm install -g
 
+# Add the user bin directory to the front of the path
+mkdir -p $HOME/bin
+echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bash_profile
+
 # force /usr/bin/python to point at python 3
-sudo ln -sf /usr/bin/python3 /usr/bin/python
+if [ ! -f "$HOME/bin/python" ]; then
+    sudo ln -s $(which python3) $HOME/bin/python
+fi
 
 # if pip got installed to pip3, reference the unversioned commands in 
 if [ ! -f "$(which pip)" ]; then
@@ -41,7 +47,7 @@ SUBL_PACKAGE_CONFIG_DIR="$SUBL_INSTALLED_DIR/Packages/User"
 if [ -d "$SUBL_PACKAGES_DIR" ]; then
     if [ ! -f "$SUBL_PACKAGES_DIR/Package Control.sublime-package" ]; then
         # directly download package control into sublime if it's not there already
-        curl https://packagecontrol.io/Package%20Control.sublime-package > "$SUBL_PACKAGES_DIR"
+        curl https://packagecontrol.io/Package%20Control.sublime-package > "$SUBL_PACKAGES_DIR/Package Control.sublime-package"
     fi
 
     PACKAGE_CONTROL_CONFIG_FILE="$SUBL_PACKAGE_CONFIG_DIR/Package Control.sublime-settings"
