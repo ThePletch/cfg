@@ -1,6 +1,9 @@
 {
 	"installed_packages": [
+		"LSP",
+		"LSP-typescript",
 		"Package Control",
+		"Pretty JSON",
 		"Python 3",
 		"SublimeLinter",
 		"SublimeLinter-flake8",
