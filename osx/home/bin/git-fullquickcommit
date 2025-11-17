@@ -1,10 +1,9 @@
 #!/bin/bash
 # As quickcommmit, but also checks in any untracked files. Use with caution if your gitignore
 # isn't comprehensive.
-set -e
+set -e -o pipefail
 source "$(dirname $0)/util/git_helpers.sh"
-
-main_branch_guard "Quickcommit is disabled when making direct edits to the '$(main_branch_name)' branch."
+main_branch_guard "Quickcommit is disabled when making direct edits to the main branch of a repository."
 
 git add --all
-source "$(dirname $0)/git-quickcommmit"
+source "$(dirname $0)/git-quickcommit"

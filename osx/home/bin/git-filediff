@@ -1,0 +1,10 @@
+#!/bin/bash
+# Creates a patch consisting of this branch's changes in a list of files specified in a passed file
+set -e -o pipefail
+if [ $# -eq 0 ]; then
+  echo "You must provide a file path containing a list of files, e.g. \`git filediff diff-files.txt\`"
+  exit 1
+fi
+source "$(dirname $0)/util/git_helpers.sh"
+main_branch_guard "Filesdiff compares files to the main branch, so it can't see any changes when run from the main branch"
+cat $@ | xargs git diff $(main_branch_name) head --

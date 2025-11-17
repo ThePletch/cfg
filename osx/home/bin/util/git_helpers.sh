@@ -3,7 +3,10 @@ function main_branch_name() {
 }
 
 function main_branch_guard() {
-	if [ "$(git rev-parse --abbrev-ref HEAD)" = "$(main_branch_name)" ]; then
+	local head_branch
+	head_branch="$(git rev-parse --abbrev-ref HEAD)"
+	if [ "$head_branch" = main_branch_name ]; then
+		echo "fatal: action blocked while on branch '$head_branch'"
 		echo "$1"
 		exit 1
 	fi

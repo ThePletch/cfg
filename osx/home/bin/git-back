@@ -1,7 +1,8 @@
 #!/bin/bash
 # Switch to another branch, ensuring you're on the latest version of that branch.
 # Defaults to switching back to the repo's main branch.
-set -e
+set -e -o pipefail
+
 source "$(dirname $0)/util/git_helpers.sh"
 
 BACK_TARGET=${1:-$(main_branch_name)}

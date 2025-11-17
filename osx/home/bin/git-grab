@@ -1,0 +1,17 @@
+#!/bin/bash
+# Fetch a remote-tracking branch and make a local copy.
+# Usage:
+#   `git grab my-branch` mirrors the remote-tracking branch my-branch from the 'origin' remote
+#   `git grab some-remote my-branch` mirrors from the specified remote instead
+set -e -o pipefail
+
+if [ $# -eq 0 ]; then
+  echo "You must provide a branch name to grab, e.g. \`git grab my-branch\`"
+  exit 1
+fi
+
+if [ $# -gt 2 ]; then
+  echo ""
+fi
+
+git fetch origin "$1:$1"
