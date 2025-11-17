@@ -30,18 +30,15 @@ fi
 
 # if pip got installed to pip3, reference the unversioned commands in 
 if [ ! -f "$(which pip)" ]; then
-    sudo ln -s /usr/bin/pip3 /usr/bin/pip
+    sudo ln -s /usr/bin/pip3 /usr/local/bin/pip
 fi
 
 # pip comes bundled with python (installed via brew).
 # we can install other python versions later for specific projects using poetry.
 PIP_REQUIRE_VIRTUALENV=false pip install --user -r $OSX_INSTALLS_DIR/pip_packages
 
-# install poetry to manage project-level python dependencies
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-
 # try to install Package Control automatically in sublime, if we can
-SUBL_INSTALLED_DIR="$HOME/Library/Application Support/Sublime Text 3"
+SUBL_INSTALLED_DIR="$HOME/Library/Application Support/Sublime Text"
 SUBL_PACKAGES_DIR="$SUBL_INSTALLED_DIR/Installed Packages"
 SUBL_PACKAGE_CONFIG_DIR="$SUBL_INSTALLED_DIR/Packages/User"
 if [ -d "$SUBL_PACKAGES_DIR" ]; then
